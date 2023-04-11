@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 const runtimeConfig = useRuntimeConfig();
 const configuration = new Configuration({
-    organization: "org-dKYBuzjJr4mntcytzXc3fCUY",
+    organization: runtimeConfig.NUXT_API_ORG,
     apiKey: runtimeConfig.NUXT_API_SECRET
 });
 
