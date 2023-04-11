@@ -1,0 +1,17 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "^3.3.3",
+    "nuxt-windicss": "^2.6.0",
+    "openai": "^3.2.1",
+    "sass": "^1.61.0"
+  }
+}
