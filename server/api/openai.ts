@@ -1,7 +1,8 @@
 import { Configuration, OpenAIApi } from "openai";
+const runtimeConfig = useRuntimeConfig();
 const configuration = new Configuration({
     organization: "org-dKYBuzjJr4mntcytzXc3fCUY",
-    apiKey: "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",
+    apiKey: runtimeConfig.NUXT_API_SECRET
 });
 
 export default defineEventHandler(async () => {
