@@ -1,172 +1,112 @@
 <template>
-    <div class="letter-form">
-        <form>
-            <div class="letter-form__section mb-6">
-                <h2>Your info</h2>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-2">
-                            <label>
-                                <span>Title</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-5">
-                            <label>
-                                <span>Fist name</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-5">
-                            <label>
-                                <span>Title</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
+    <div class="letter-form flex w-full">
+        <div class="letter-form__left w-1/2">
+            <form @submit.prevent class="letter-form__form">
+                <div class="letter-form__section mb-6">
+                    <h2>Your info</h2>
+                    <div class="letter-form__row">
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>Fist name</span>
+                                    <input v-model="form.firstName" class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>Last name</span>
+                                    <input v-model="form.lastName" class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Phone</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Email</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Street</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Postal code</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
+                    <div class="letter-form__row">
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>City</span>
+                                    <input v-model="form.city" class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>Country</span>
+                                    <input v-model="form.country" class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>City</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Country</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
+                    <div class="letter-form__row">
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>Company</span>
+                                    <input class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
+                            <div class="letter-form__field col-span-6">
+                                <label>
+                                    <span>Job position</span>
+                                    <input class="letter-form__input w-full" type="text" />
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <div class="letter-form__row">
+                        <button @click="prepareCall">Generate</button>
+                    </div>
                 </div>
+            </form>
+        </div>
+        <div class="letter-form__right w-1/2">
+            <div class="letter-form__result">
+                {{ content }}
             </div>
-            <div class="letter-form__section">
-                <h2>Recipient</h2>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-2">
-                            <label>
-                                <span>Title</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-5">
-                            <label>
-                                <span>Fist name</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-5">
-                            <label>
-                                <span>Title</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="letter-form__row">
-                    <div class="grid grid-cols-12 gap-2">
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Company</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                        <div class="letter-form__field col-span-6">
-                            <label>
-                                <span>Department</span>
-                                <input class="letter-form__input w-full" type="text" />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useOPenAi } from "@/composables/useOpenAi";
+
 interface Form {
     jobPosition: string;
-    title: string;
     firstName: string;
     lastName: string;
-    phone: string;
-    email: string;
-    street: string;
     city: string;
-    postalCode: string;
     country: string;
-    recipientTitle: string;
-    recipientFirstName: string;
-    recipientLastName: string;
-    company: string;
-    department: string;
+    comnpany: string;
 }
 
+const { generateLetter, content, loading } = useOPenAi();
 const form = ref<Form>({
     jobPosition: "",
-    title: "",
     firstName: "",
     lastName: "",
-    phone: "",
-    email: "",
-    street: "",
     city: "",
-    postalCode: "",
     country: "",
-    recipientTitle: "",
-    recipientFirstName: "",
-    recipientLastName: "",
-    company: "",
-    department: ""
+    comnpany: ""
 })
 
-const { data } = await useFetch("/api/openai")
-console.log(data.value)
+function prepareCall () {
+    const prompt = createPromt();
+    generateLetter(prompt);
+}
+
+function createPromt () {
+    return `Write a cover letter for ${form.value.firstName} ${form.value.lastName}, who is a ${form.value.jobPosition} living in ${form.value.city}, ${form.value.country} and is intered in working for a company like ${form.value.comnpany}. Phone number is ${form.value.phone} and ${form.value.email}.`;
+}
 </script>
 
 <style lang="scss" scoped>
 .letter-form {
-    max-width: 600px;
+    
+    &__form {
+        max-width: 600px;
+    }
 
     &__section {
         @apply p-6;
-        background-color: white;
         border-radius: 10px;
     }
 
@@ -176,7 +116,16 @@ console.log(data.value)
 
     &__input {
         border: 1px solid #d4d4d4;
-        border-radius: 2px;
+        border-radius: 4px;
+        height: 32px;
+        padding: 0 6px;
+    }
+
+    &__result {
+        background-color: #fff;
+        min-height: 500px;
+        padding: 12px;
+        white-space: pre-line
     }
 }
 </style>
